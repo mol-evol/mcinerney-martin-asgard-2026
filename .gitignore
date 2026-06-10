@@ -1,0 +1,13 @@
+# Deposited data (download from Zenodo 10.5281/zenodo.15048010)
+*.tsv
+*.tar.gz
+_trees/
+_alltrees/
+
+# Python
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# OS
+.DS_Store
