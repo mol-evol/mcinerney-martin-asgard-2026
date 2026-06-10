@@ -44,11 +44,6 @@ python make_main_figure.py /path/to/zenodo_15048010 .  # Figure 1
 python functional_enrichment.py /path/to/zenodo_15048010
 ```
 
-## Notes
-
-The in-code comment in `asgard_reanalysis.py` that the s0 set has "5,846" EPOCs is
-superseded: the md5-verified deposited s0 file yields 7,276 core tuples.
-
 ## Citation
 
 Please cite the Matters Arising (McInerney & Martin) and the original data deposit

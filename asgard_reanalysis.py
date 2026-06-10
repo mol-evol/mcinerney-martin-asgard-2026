@@ -641,7 +641,7 @@ if __name__ == "__main__":
                "established directly from the authors' code, and corroborated by the naming series "
                "(s10/s25/s67 = cutoff 0.10/0.25/0.67), by the result (diverse bacterial donors dominate; "
                "Asgard ~5%), and by the candidate sets (95% of s0 tuples carry a bacterial candidate vs "
-               "66% at s10). The small EPOC count (5,846) fits: cutoff 0 yields the largest, most "
+               "66% at s10). The EPOC count (7,276 core tuples on the md5-verified deposited file) fits: cutoff 0 yields the largest, most "
                "divergent EPOCs, most of which fail the downstream tree QC. (s0 is absent from the v0.3 "
                "README, which predates it; it can be independently reproduced via "
                "mmseqs_create_pangenome.py --evaluation_cutoff 0.0 + the downstream eukgen steps.)"),
