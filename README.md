@@ -2,12 +2,28 @@
 
 Code and derived data for the Matters Arising by **J. O. McInerney & W. F. Martin** on
 Tobiasson, Luo, Wolf & Koonin, "Dominant contribution of Asgard archaea to eukaryogenesis",
-*Nature* **650**, 141–149 (2026). This is the **v15** (revised) version.
+*Nature* **650**, 141–149 (2026).
 
-Every analysis uses **only the authors' own deposited data** (Zenodo record
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20628634.svg)](https://doi.org/10.5281/zenodo.20628634)
+
+This release (**v2.0.0**) accompanies the revised Comment. Every analysis uses **only the
+authors' own deposited data** (Zenodo record
 [10.5281/zenodo.15048010](https://doi.org/10.5281/zenodo.15048010)) and their analytical
 pipeline; no external data are introduced.
 
+## What changed at revision (v1.0.0 → v2.0.0)
+
+| Change | Where |
+|---|---|
+| Main Fig. 1 panels swapped: filter effect = **a**, occupancy diagnostic = **b** | `make_main_figure.py`, `rebuild_v15_figures.py` |
+| "Head-to-head" relabelled **"Conditional"** throughout (it is a diagnostic, not a summary statistic) | both figure scripts |
+| Extended Data Fig. 1 reduced from 8 panels to 5 (a–e) | `asgard_reanalysis.py: part6_figure`, `rebuild_v15_figures.py` |
+| — deleted: Asgard:Alpha stratification and filter sweep (now main Fig. 1a,b) | |
+| — deleted: Asgard-monophyly panel (Asgard paraphyly is expected if eukaryotes branch within Asgard) | |
+| — relettered d→c, f→d, g→e; full clade names with leader lines in panel a | |
+| Extended Data Fig. 2b retitled: the spread argument now targets **post-acquisition adaptation**, not acquisition timing, which Tobiasson et al. themselves reject | `asgard_reanalysis.py: _stem_figure` |
+| **KEGG best-hit tie-break made deterministic** (`kind='mergesort'`). 24.5% of queries have their maximum `Prob` tied across >1 distinct target; the previous default (unstable quicksort) made those assignments irreproducible between runs | `asgard_reanalysis.py` (Parts 5 and 9), `functional_enrichment.py`, `rebuild_ed_fig2.py` |
+| Numbers that moved as a result: ED Fig. 2b spreads 72×/47× → **70×/50×** (n = 65/50 → **58/54**); SI functional enrichment recomputed | manuscript, Supplementary Information |
 
 ## Data
 
@@ -78,8 +94,15 @@ R² 0.92 / 0.79; filter sweep 0.44 / 7.74 / 6.13 / 14.02; 5,381 Asgard-winner tr
 
 ## Citation
 
-Please cite the Matters Arising (McInerney & Martin) and the original data deposit
-(Tobiasson et al., Zenodo 10.5281/zenodo.15048010).
+Please cite the Matters Arising (McInerney & Martin), this code archive, and the original
+data deposit:
+
+- **This code**, version of record for the published analysis:
+  [10.5281/zenodo.21905181](https://doi.org/10.5281/zenodo.21905181) (v2.0.0).
+  To cite all versions and always resolve to the latest, use the concept DOI
+  [10.5281/zenodo.20628634](https://doi.org/10.5281/zenodo.20628634).
+- **Original data** (Tobiasson et al.):
+  [10.5281/zenodo.15048010](https://doi.org/10.5281/zenodo.15048010).
 
 ## License
 
