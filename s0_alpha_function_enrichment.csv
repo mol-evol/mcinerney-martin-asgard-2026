@@ -1,0 +1,184 @@
+map_id,pathway_name,n_EPOCs,n_alpha_winner,pct_alpha,enrichment_vs_background
+map04932,Non-alcoholic fatty liver disease,15,6,40.0,3.51
+map02040,Flagellar assembly,20,7,35.0,3.07
+map00780,Biotin metabolism,12,4,33.3,2.92
+map04714,Thermogenesis,41,13,31.7,2.78
+map00791,Atrazine degradation,13,4,30.8,2.7
+map04214,Apoptosis - fly,10,3,30.0,2.63
+map00640,Propanoate metabolism,37,11,29.7,2.61
+map04112,Cell cycle - Caulobacter,24,7,29.2,2.56
+map00540,Lipopolysaccharide biosynthesis,11,3,27.3,2.39
+map01501,beta-Lactam resistance,15,4,26.7,2.34
+map00190,Oxidative phosphorylation,70,18,25.7,2.25
+map03440,Homologous recombination,28,7,25.0,2.19
+map03010,Ribosome,72,18,25.0,2.19
+map00960,"Tropane, piperidine and pyridine alkaloid biosynthesis",12,3,25.0,2.19
+map05415,Diabetic cardiomyopathy,24,6,25.0,2.19
+map00720,Carbon fixation pathways in prokaryotes,54,13,24.1,2.11
+map00340,Histidine metabolism,50,12,24.0,2.1
+map00670,One carbon pool by folate,25,6,24.0,2.1
+map04723,Retrograde endocannabinoid signaling,17,4,23.5,2.06
+map05020,Prion disease,26,6,23.1,2.02
+map05166,Human T-cell leukemia virus 1 infection,13,3,23.1,2.02
+map01503,Cationic antimicrobial peptide (CAMP) resistance,13,3,23.1,2.02
+map04080,Neuroactive ligand-receptor interaction,13,3,23.1,2.02
+map00280,"Valine, leucine and isoleucine degradation",32,7,21.9,1.92
+map05022,Pathways of neurodegeneration - multiple diseases,32,7,21.9,1.92
+map00470,D-Amino acid metabolism,14,3,21.4,1.88
+map05010,Alzheimer disease,28,6,21.4,1.88
+map00290,"Valine, leucine and isoleucine biosynthesis",14,3,21.4,1.88
+map00910,Nitrogen metabolism,28,6,21.4,1.88
+map05014,Amyotrophic lateral sclerosis,33,7,21.2,1.86
+map03430,Mismatch repair,24,5,20.8,1.83
+map00680,Methane metabolism,44,9,20.5,1.79
+map01210,2-Oxocarboxylic acid metabolism,44,9,20.5,1.79
+map04361,Axon regeneration,10,2,20.0,1.75
+map00250,"Alanine, aspartate and glutamate metabolism",30,6,20.0,1.75
+map00906,Carotenoid biosynthesis,10,2,20.0,1.75
+map05016,Huntington disease,31,6,19.4,1.7
+map05111,Biofilm formation - Vibrio cholerae,31,6,19.4,1.7
+map00513,Various types of N-glycan biosynthesis,26,5,19.2,1.69
+map00785,Lipoic acid metabolism,21,4,19.0,1.67
+map04979,Cholesterol metabolism,16,3,18.8,1.64
+map04071,Sphingolipid signaling pathway,16,3,18.8,1.64
+map00362,Benzoate degradation,27,5,18.5,1.62
+map03420,Nucleotide excision repair,22,4,18.2,1.59
+map00603,Glycosphingolipid biosynthesis - globo and isoglobo series,11,2,18.2,1.59
+map00970,Aminoacyl-tRNA biosynthesis,44,8,18.2,1.59
+map00380,Tryptophan metabolism,33,6,18.2,1.59
+map00300,Lysine biosynthesis,17,3,17.6,1.55
+map01040,Biosynthesis of unsaturated fatty acids,23,4,17.4,1.52
+map05208,Chemical carcinogenesis - reactive oxygen species,64,11,17.2,1.51
+map03410,Base excision repair,35,6,17.1,1.5
+map00130,Ubiquinone and other terpenoid-quinone biosynthesis,35,6,17.1,1.5
+map00260,"Glycine, serine and threonine metabolism",47,8,17.0,1.49
+map00623,Toluene degradation,12,2,16.7,1.46
+map00521,Streptomycin biosynthesis,12,2,16.7,1.46
+map05012,Parkinson disease,36,6,16.7,1.46
+map00525,Acarbose and validamycin biosynthesis,12,2,16.7,1.46
+map03070,Bacterial secretion system,18,3,16.7,1.46
+map00650,Butanoate metabolism,36,6,16.7,1.46
+map00920,Sulfur metabolism,48,8,16.7,1.46
+map00350,Tyrosine metabolism,42,7,16.7,1.46
+map00770,Pantothenate and CoA biosynthesis,26,4,15.4,1.35
+map01200,Carbon metabolism,162,25,15.4,1.35
+map02020,Two-component system,137,21,15.3,1.34
+map00630,Glyoxylate and dicarboxylate metabolism,59,9,15.3,1.34
+map00270,Cysteine and methionine metabolism,73,11,15.1,1.32
+map01120,Microbial metabolism in diverse environments,508,73,14.4,1.26
+map00230,Purine metabolism,161,23,14.3,1.25
+map00440,Phosphonate and phosphinate metabolism,14,2,14.3,1.25
+map00790,Folate biosynthesis,35,5,14.3,1.25
+map05134,Legionellosis,14,2,14.3,1.25
+map00053,Ascorbate and aldarate metabolism,28,4,14.3,1.25
+map00541,O-Antigen nucleotide sugar biosynthesis,36,5,13.9,1.22
+map00360,Phenylalanine metabolism,37,5,13.5,1.18
+map04212,Longevity regulating pathway - worm,30,4,13.3,1.17
+map00620,Pyruvate metabolism,69,9,13.0,1.14
+map03020,RNA polymerase,23,3,13.0,1.14
+map01100,Metabolic pathways,1990,252,12.7,1.11
+map00930,Caprolactam degradation,24,3,12.5,1.1
+map04146,Peroxisome,50,6,12.0,1.05
+map00600,Sphingolipid metabolism,50,6,12.0,1.05
+map03030,DNA replication,27,3,11.1,0.97
+map03018,RNA degradation,27,3,11.1,0.97
+map00730,Thiamine metabolism,18,2,11.1,0.97
+map01220,Degradation of aromatic compounds,64,7,10.9,0.96
+map00543,Exopolysaccharide biosynthesis,28,3,10.7,0.94
+map01240,Biosynthesis of cofactors,264,28,10.6,0.93
+map00760,Nicotinate and nicotinamide metabolism,38,4,10.5,0.92
+map05418,Fluid shear stress and atherosclerosis,19,2,10.5,0.92
+map03060,Protein export,29,3,10.3,0.91
+map00430,Taurine and hypotaurine metabolism,10,1,10.0,0.88
+map01524,Platinum drug resistance,10,1,10.0,0.88
+map02010,ABC transporters,100,10,10.0,0.88
+map00310,Lysine degradation,20,2,10.0,0.88
+map00404,Staurosporine biosynthesis,10,1,10.0,0.88
+map03460,Fanconi anemia pathway,10,1,10.0,0.88
+map04626,Plant-pathogen interaction,10,1,10.0,0.88
+map00240,Pyrimidine metabolism,92,9,9.8,0.86
+map01230,Biosynthesis of amino acids,164,16,9.8,0.86
+map01110,Biosynthesis of secondary metabolites,777,74,9.5,0.83
+map01250,Biosynthesis of nucleotide sugars,86,8,9.3,0.82
+map02024,Quorum sensing,75,7,9.3,0.82
+map01232,Nucleotide metabolism,86,8,9.3,0.82
+map05152,Tuberculosis,11,1,9.1,0.8
+map00642,Ethylbenzene degradation,11,1,9.1,0.8
+map05417,Lipid and atherosclerosis,11,1,9.1,0.8
+map04068,FoxO signaling pathway,11,1,9.1,0.8
+map00195,Photosynthesis,45,4,8.9,0.78
+map00061,Fatty acid biosynthesis,12,1,8.3,0.73
+map00330,Arginine and proline metabolism,60,5,8.3,0.73
+map04621,NOD-like receptor signaling pathway,12,1,8.3,0.73
+map00051,Fructose and mannose metabolism,60,5,8.3,0.73
+map05207,Chemical carcinogenesis - receptor activation,12,1,8.3,0.73
+map00311,Penicillin and cephalosporin biosynthesis,12,1,8.3,0.73
+map04142,Lysosome,50,4,8.0,0.7
+map00220,Arginine biosynthesis,25,2,8.0,0.7
+map00480,Glutathione metabolism,38,3,7.9,0.69
+map00030,Pentose phosphate pathway,64,5,7.8,0.68
+map00500,Starch and sucrose metabolism,65,5,7.7,0.67
+map00907,"Pinene, camphor and geraniol degradation",13,1,7.7,0.67
+map00592,alpha-Linolenic acid metabolism,13,1,7.7,0.67
+map00627,Aminobenzoate degradation,26,2,7.7,0.67
+map05131,Shigellosis,14,1,7.1,0.63
+map00982,Drug metabolism - cytochrome P450,14,1,7.1,0.63
+map00261,Monobactam biosynthesis,14,1,7.1,0.63
+map00550,Peptidoglycan biosynthesis,14,1,7.1,0.63
+map04024,cAMP signaling pathway,14,1,7.1,0.63
+map00520,Amino sugar and nucleotide sugar metabolism,103,7,6.8,0.6
+map04148,Efferocytosis,16,1,6.2,0.55
+map00510,N-Glycan biosynthesis,16,1,6.2,0.55
+map00750,Vitamin B6 metabolism,16,1,6.2,0.55
+map00400,"Phenylalanine, tyrosine and tryptophan biosynthesis",32,2,6.2,0.55
+map01212,Fatty acid metabolism,33,2,6.1,0.53
+map01057,Biosynthesis of type II polyketide products,18,1,5.6,0.49
+map04122,Sulfur relay system,19,1,5.3,0.46
+map00860,Porphyrin metabolism,60,3,5.0,0.44
+map05200,Pathways in cancer,21,1,4.8,0.42
+map00980,Metabolism of xenobiotics by cytochrome P450,21,1,4.8,0.42
+map00564,Glycerophospholipid metabolism,64,3,4.7,0.41
+map00565,Ether lipid metabolism,22,1,4.5,0.4
+map00561,Glycerolipid metabolism,46,2,4.3,0.38
+map00983,Drug metabolism - other enzymes,25,1,4.0,0.35
+map00052,Galactose metabolism,50,2,4.0,0.35
+map05132,Salmonella infection,28,1,3.6,0.31
+map00740,Riboflavin metabolism,29,1,3.4,0.3
+map00450,Selenocompound metabolism,29,1,3.4,0.3
+map01059,Biosynthesis of enediyne antibiotics,30,1,3.3,0.29
+map02025,Biofilm formation - Pseudomonas aeruginosa,31,1,3.2,0.28
+map00071,Fatty acid degradation,33,1,3.0,0.27
+map00998,Biosynthesis of various antibiotics,35,1,2.9,0.25
+map00040,Pentose and glucuronate interconversions,39,1,2.6,0.22
+map00511,Other glycan degradation,53,1,1.9,0.17
+map00010,Glycolysis / Gluconeogenesis,60,1,1.7,0.15
+map00900,Terpenoid backbone biosynthesis,19,0,0.0,0.0
+map05168,Herpes simplex virus 1 infection,10,0,0.0,0.0
+map04931,Insulin resistance,23,0,0.0,0.0
+map04144,Endocytosis,18,0,0.0,0.0
+map00710,Carbon fixation in photosynthetic organisms,21,0,0.0,0.0
+map05230,Central carbon metabolism in cancer,17,0,0.0,0.0
+map04152,AMPK signaling pathway,10,0,0.0,0.0
+map03008,Ribosome biogenesis in eukaryotes,17,0,0.0,0.0
+map04141,Protein processing in endoplasmic reticulum,14,0,0.0,0.0
+map04810,Regulation of actin cytoskeleton,11,0,0.0,0.0
+map04666,Fc gamma R-mediated phagocytosis,10,0,0.0,0.0
+map00410,beta-Alanine metabolism,15,0,0.0,0.0
+map03050,Proteasome,11,0,0.0,0.0
+map00997,Biosynthesis of various other secondary metabolites,14,0,0.0,0.0
+map00524,"Neomycin, kanamycin and gentamicin biosynthesis",10,0,0.0,0.0
+map04014,Ras signaling pathway,11,0,0.0,0.0
+map04973,Carbohydrate digestion and absorption,15,0,0.0,0.0
+map04217,Necroptosis,12,0,0.0,0.0
+map00405,Phenazine biosynthesis,13,0,0.0,0.0
+map00562,Inositol phosphate metabolism,24,0,0.0,0.0
+map04922,Glucagon signaling pathway,17,0,0.0,0.0
+map04936,Alcoholic liver disease,11,0,0.0,0.0
+map04930,Type II diabetes mellitus,12,0,0.0,0.0
+map00020,Citrate cycle (TCA cycle),23,0,0.0,0.0
+map00946,Degradation of flavonoids,20,0,0.0,0.0
+map05171,Coronavirus disease - COVID-19,15,0,0.0,0.0
+map03320,PPAR signaling pathway,21,0,0.0,0.0
+map04137,Mitophagy - animal,10,0,0.0,0.0
+map04910,Insulin signaling pathway,21,0,0.0,0.0
+map00830,Retinol metabolism,10,0,0.0,0.0
