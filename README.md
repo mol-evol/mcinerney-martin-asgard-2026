@@ -122,7 +122,7 @@ Please cite the Matters Arising (McInerney & Martin), this code archive, and the
 data deposit:
 
 - **This code**, version of record for the published analysis:
-  [10.5281/zenodo.21905181](https://doi.org/10.5281/zenodo.21905181) (v2.0.0).
+  [10.5281/zenodo.22690007](https://doi.org/10.5281/zenodo.22690007) (v3.0.0).
   To cite all versions and always resolve to the latest, use the concept DOI
   [10.5281/zenodo.20628634](https://doi.org/10.5281/zenodo.20628634).
 - **Original data** (Tobiasson et al.):
