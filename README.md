@@ -6,10 +6,22 @@ Tobiasson, Luo, Wolf & Koonin, "Dominant contribution of Asgard archaea to eukar
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20628634.svg)](https://doi.org/10.5281/zenodo.20628634)
 
-This release (**v2.0.0**) accompanies the revised Comment. Every analysis uses **only the
+This release (**v3.0.0**) accompanies the second revision of the Comment. Every analysis uses **only the
 authors' own deposited data** (Zenodo record
 [10.5281/zenodo.15048010](https://doi.org/10.5281/zenodo.15048010)) and their analytical
 pipeline; no external data are introduced.
+
+## What changed at the second revision (v2.0.0 → v3.0.0)
+
+Accompanies the Comment revised after the Reply of Tobiasson et al. and a second round of review.
+
+| Change | Where |
+|---|---|
+| **Functional classes follow KEGG's own top-level pathway classes** (`brite_A`: 09120 Genetic Information Processing = informational; 09100 Metabolism = metabolic; else other). The earlier map-prefix rule (map03 / map00) counted viral, secretion-system and PPAR-signalling maps as informational and aminoacyl-tRNA biosynthesis as metabolic. Extended Data Fig. 1e moves by <1 percentage point | `asgard_reanalysis.py: kegg_class_map`, `kegg_function_classes.py` |
+| New **Extended Data Fig. 1f**: Asgard share of summed core c-ELW with and without the filter on the 2,751 gene families present in both runs, overall and by function | `kegg_function_classes.py`, `rebuild_v15_figures.py` |
+| **Extended Data Fig. 2a** rebuilt: Asgard:bacterial ratios of raw stem, normaliser and normalised stem, split into broad (LECA-like) and narrow eukaryotic clades. The normaliser explanation holds only in narrow clades and is withdrawn; panel b no longer invokes "adaptive distance" | `rebuild_ed_fig2.py` |
+| New **Extended Data Table 1**: percentage of summed core c-ELW per group at each cut-off | `reply_checks.py` → `ed_table1_percent_contribution.csv` |
+| Checks on the Reply: what Reply Table 1 counts (candidate clades, not supported sisters) and its unfiltered summary statistics | `reply_checks.py` |
 
 ## What changed at revision (v1.0.0 → v2.0.0)
 
@@ -35,6 +47,7 @@ Download from Zenodo 15048010 and place in a single directory:
 | `EPOC_data.pangenome_s0.tsv`, `…_s25.tsv`, `…_s67.tsv` | filter sweep, s0 tests |
 | `EPOC_data.tar.gz` (master trees, ~1.2 GB) | tree analysis (Parts 4–5) |
 | `EPOC_annotation_KEGG.tsv`, `KEGG_category_mapping.tsv` | KEGG stratification, functional test, stem sets |
+| `KEGG_metadata.tsv` | functional classes (KEGG top-level pathway classes) |
 
 By default the scripts expect these one directory above the script (the deposit layout);
 otherwise pass the data directory as the first argument.
@@ -70,7 +83,9 @@ against inter-donor differences roughly an order of magnitude smaller.
 | `make_main_figure.py [DATA_DIR] [OUT_DIR]` | main-text Figure 1 (two panels, v15 order) |
 | `functional_enrichment.py [DATA_DIR]` | KEGG functional enrichment of s0 alphaproteobacterial winners |
 | `rebuild_v15_figures.py` | rebuilds main Fig. 1 and Extended Data Fig. 1 from the reduced inputs above, without the 1.2 GB tree archive |
-| `rebuild_ed_fig2.py` | rebuilds Extended Data Fig. 2 from the reduced inputs, without the 1.2 GB tree archive |
+| `rebuild_ed_fig2.py` | rebuilds Extended Data Fig. 2 from the reduced inputs plus `EPOC_data.tsv` (clade breadth), without the 1.2 GB tree archive |
+| `kegg_function_classes.py [DATA_DIR]` | functional-class tables for Extended Data Fig. 1e,f and the survival of Asgard calls by class |
+| `reply_checks.py [DATA_DIR]` | Reply Table 1 check, Reply statistics, matched-family comparison, Extended Data Table 1 |
 
 ## Requirements
 
@@ -83,6 +98,9 @@ Python 3.10+. `pip install -r requirements.txt` (pandas, numpy, scipy, matplotli
 python recompute_aelw.py /path/to/zenodo_15048010      # 7.74 = 3.24 x 2.39; conditional 1.60
 python make_main_figure.py /path/to/zenodo_15048010 .  # Figure 1
 python functional_enrichment.py /path/to/zenodo_15048010
+python kegg_function_classes.py /path/to/zenodo_15048010   # then rebuild_v15_figures.py
+python reply_checks.py /path/to/zenodo_15048010
+python rebuild_ed_fig2.py /path/to/zenodo_15048010 .
 ```
 
 All of the following reproduce exactly on the current deposit: 16,526 core tuples
@@ -91,6 +109,12 @@ All of the following reproduce exactly on the current deposit: 16,526 core tuple
 tuples of which 4,396 (62.1%) are Asgard-only; stratification 7.74 → 1.62; panel-a
 R² 0.92 / 0.79; filter sweep 0.44 / 7.74 / 6.13 / 14.02; 5,381 Asgard-winner trees,
 63.3% with no bacterial leaf. See `../RECONCILIATION.md`.
+
+Second revision: at s0 Asgard is a candidate in 870 of 5,846 EPOCs but best-supported in
+318 (424 tests; 491 with ties); on the 2,751 families in both runs the Asgard share of summed
+core c-ELW is 7.6% (s0) vs 33.3% (s10); by function, 18.3% → 31.9% (informational) and
+4.8% → 27.7% (metabolic); 56% (10/18) of informational and 13% (7/55) of metabolic Asgard
+calls remain Asgard without the filter; normalised-stem rank-biserial −0.05 to −0.09.
 
 ## Citation
 

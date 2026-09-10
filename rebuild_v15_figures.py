@@ -124,10 +124,10 @@ for ext in ('svg', 'pdf', 'png'):
 plt.close(fig)
 
 # ---------------------------------------------------------------- ED Fig. 1
-fig = plt.figure(figsize=(7.5, 8.7))
+fig = plt.figure(figsize=(7.5, 8.9))
 gs = GridSpec(3, 4, figure=fig, hspace=0.46, wspace=0.95, left=0.085, right=0.975, top=0.97, bottom=0.06)
 A = fig.add_subplot(gs[0, 0:2]); B = fig.add_subplot(gs[0, 2:4]); C = fig.add_subplot(gs[1, 0:2])
-Dx = fig.add_subplot(gs[1, 2:4]); E = fig.add_subplot(gs[2, 1:3])
+Dx = fig.add_subplot(gs[1, 2:4]); E = fig.add_subplot(gs[2, 0:2]); F = fig.add_subplot(gs[2, 2:4])
 letter = lambda ax, l: ax.text(-0.16, 1.06, l, transform=ax.transAxes, fontsize=12, fontweight='bold', va='top')
 
 # a
@@ -194,6 +194,21 @@ for i, v in enumerate(vals): E.text(i, v + 1, f"{v:.0f}%", ha='center', fontsize
 E.set_xticks(range(len(cats))); E.set_xticklabels(cats, rotation=12, fontsize=7); E.set_ylim(0, 100)
 E.set_ylabel('% Asgard-winner trees\nwith NO bacterium'); nospine(E); letter(E, 'e')
 E.set_title('Filter empties trees of bacteria', fontsize=8.5, loc='left', pad=2)
+
+# f -- same gene families with and without the filter, overall and by function (revision 2)
+mf = pd.read_csv(os.path.join(HERE, 'matched_family_asgard_share_by_class.csv')).set_index('kegg_class')
+rows = ['all', 'informational', 'metabolic', 'other']
+xf = np.arange(len(rows)); wf = 0.38
+F.bar(xf - wf / 2, mf.loc[rows, 'Asgard%_shared_s0'], wf, color=CI, edgecolor='white', linewidth=0.5, label='No filter (s0)')
+F.bar(xf + wf / 2, mf.loc[rows, 'Asgard%_shared_s10'], wf, color=CS, edgecolor='white', linewidth=0.5, label='Filter (s10)')
+for i, r in enumerate(rows):
+    a0, a1 = mf.loc[r, 'Asgard%_shared_s0'], mf.loc[r, 'Asgard%_shared_s10']
+    F.text(i - wf / 2, a0 + 1, f"{a0:.0f}", ha='center', fontsize=6.5, color=CI)
+    F.text(i + wf / 2, a1 + 1, f"{a1:.0f}", ha='center', fontsize=6.5, color=CS)
+F.set_xticks(xf); F.set_xticklabels([f"{r}\n(n = {int(mf.loc[r, 'fam_shared']):,})" for r in rows], fontsize=6.5)
+F.set_ylabel('Asgard share of summed\ncore c-ELW (%)'); F.set_ylim(0, 45)
+F.legend(frameon=False, fontsize=6.5, loc='upper left'); nospine(F); letter(F, 'f')
+F.set_title('Same gene families, filter off vs on', fontsize=8.5, loc='left', pad=2)
 
 for ext in ('svg', 'pdf', 'png'):
     fig.savefig(os.path.join(OUT, f"ExtendedData_Fig1_v15.{ext}"), dpi=300 if ext == 'png' else None, bbox_inches='tight')

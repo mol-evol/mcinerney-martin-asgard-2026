@@ -63,6 +63,7 @@ EPOC_S = {
 TARBALL     = os.path.join(DATA, "EPOC_data.tar.gz")
 KEGG_ANNOT  = os.path.join(DATA, "EPOC_annotation_KEGG.tsv")
 KEGG_CATMAP = os.path.join(DATA, "KEGG_category_mapping.tsv")
+KEGG_META   = os.path.join(DATA, "KEGG_metadata.tsv")
 
 CORE_THRESHOLD = 0.40    # Tobiasson core set: tuples with max c-ELW > 0.4
 
@@ -272,13 +273,16 @@ def part4_trees(winners):
 
 # ============================================================== PART 5 ========
 def kegg_class_map():
-    cat = pd.read_csv(KEGG_CATMAP, sep="\t", dtype=str)
-    def cl(ids):
-        ids = set(ids)
-        if any(str(x).startswith("map03") for x in ids): return "informational"
-        if any(str(x).startswith("map00") for x in ids): return "metabolic"
-        return "other"
-    return cat.groupby("kogid")["category_id"].apply(cl)
+    """Functional class per KEGG orthologue from KEGG's own top-level pathway classes (brite_A):
+    09120 Genetic Information Processing -> informational; 09100 Metabolism -> metabolic;
+    anything else -> other. A KO in both is informational. (Revision 2: replaces a map-number
+    prefix rule, which counted viral, secretion-system and PPAR maps (03xxx) as informational
+    and aminoacyl-tRNA biosynthesis (00970) as metabolic.)"""
+    meta = pd.read_csv(KEGG_META, sep="\t", usecols=["kogid", "brite_A"], dtype=str)
+    def cl(a):
+        s = set(str(a).split("|"))
+        return "informational" if "09120" in s else ("metabolic" if "09100" in s else "other")
+    return meta.set_index("kogid")["brite_A"].map(cl)
 
 def part5_kegg(r):
     print("\n"+"="*72+"\nPART 5  KEGG stratification (informational vs metabolic)\n"+"="*72)
@@ -546,8 +550,8 @@ def part9_stemlength():
         n,lo,hi,r=spread(m); red[lab]=dict(n=n,p2_5=lo,p97_5=hi,fold_spread=r)
         print(f"  spread {lab:16s} n={n:4d} {lo:.3f}-{hi:.3f}  {r:.0f}x")
     # info vs metabolic
-    info=win.cats.map(lambda s:any(c.startswith('map03') for c in s))
-    metab=win.cats.map(lambda s:any(c.startswith('map00') for c in s) and not any(c.startswith('map03') for c in s))
+    kc=kegg_class_map(); cls=win["tree_name"].map(t2k).map(kc)
+    info=cls.eq("informational"); metab=cls.eq("metabolic")
     infomed=round(win.loc[info,'stem_length'].median(),4); metabmed=round(win.loc[metab,'stem_length'].median(),4)
     print(f"  information-processing stem {infomed:.3f} < metabolic {metabmed:.3f} (paper's own paradox)")
     # (4) filter dependence vs s0

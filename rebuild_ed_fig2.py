@@ -1,5 +1,12 @@
 #!/usr/bin/env python3
-"""Rebuild Extended Data Fig. 2 in the v15 framing.
+"""Rebuild Extended Data Fig. 2.
+
+Revision 2: panel a now shows Asgard:bacterial ratios of raw stem, normaliser and
+normalised stem separately for broad (LECA-like) and narrow eukaryotic clades; the
+normaliser explanation holds only in narrow clades. Panel b no longer invokes
+"adaptive distance". Needs EPOC_data.tsv in DATA_DIR for clade breadth.
+
+Earlier (v15) framing:
 
 Panel content and statistics are unchanged from v13. The change is the target of the
 argument: Tobiasson et al. explicitly reject the reading of stem length as acquisition
@@ -44,6 +51,11 @@ win = d.loc[d.groupby('key')['celw'].idxmax()].copy()
 dom = lambda t: "Asgard" if t == "Asgard" else ("Archaea" if t in ARCH else "Bacteria")
 win['domn'] = win['prok_taxa'].map(dom)
 win = win[np.isfinite(win['stem_length'])]
+# revision 2: eukaryotic clade breadth, from the full deposited file
+br = pd.read_csv(os.path.join(DATA, 'EPOC_data.tsv'), sep='\t', usecols=['tree_name', 'euk_clade_rep', 'euk_LCA', 'euk_scope_len'])
+win = win.merge(br.drop_duplicates(['tree_name', 'euk_clade_rep']), on=['tree_name', 'euk_clade_rep'], how='left')
+win['breadth'] = np.where((win.euk_LCA == 'Eukaryota') & (win.euk_scope_len > 5), 'broad',
+                          np.where(win.euk_scope_len <= 5, 'narrow', 'intermediate'))
 
 # reproduce part9's mapping exactly: pandas sort_values('Prob') + drop_duplicates(keep='last')
 a = pd.read_csv(os.path.join(HERE, 'KEGG_annotation_3col.tsv.gz'), sep='\t',
@@ -80,22 +92,28 @@ A = fig.add_subplot(gs[0, 0]); B = fig.add_subplot(gs[0, 1])
 nospine = lambda ax: [ax.spines[s].set_visible(False) for s in ('top', 'right')]
 letter = lambda ax, l: ax.text(-0.17, 1.10, l, transform=ax.transAxes, fontsize=12, fontweight='bold', va='top')
 
-short = ["Asgard", "Cyano", "Alpha\n(mito)", "Gamma", "Actino"]
-raw = [perdon[t]['raw'] for t in donors]
-nrm = [perdon[t]['norm'] for t in donors]
-den = [perdon[t]['denom'] for t in donors]
-xx = np.arange(len(donors)); w = 0.38
-A.bar(xx - w / 2, raw, w, color=CG, edgecolor='white', linewidth=0.5, label='Raw stem')
-A.bar(xx + w / 2, nrm, w, color=CC, edgecolor='white', linewidth=0.5, label='Normalised stem')
-A.set_xticks(xx); A.set_xticklabels(short, fontsize=7.2)
-A.set_ylabel('Median stem length'); A.set_ylim(0, 0.26)
-A.legend(loc='upper left', frameon=False, fontsize=6.8); A.spines['top'].set_visible(False)
-At = A.twinx()
-At.plot(xx, den, 'o-', color=CS, lw=1.2, ms=4, mec='white', mew=0.6, label='Median euk. branch\n(normaliser)')
-At.set_ylabel('Median euk. branch length', color=CS); At.tick_params(axis='y', colors=CS)
-At.set_ylim(0, 1.7); At.spines['top'].set_visible(False)
-At.legend(loc='upper right', frameon=False, fontsize=6.5)
-A.set_title("Raw stems are equal; normalisation makes\nAsgard (and Cyano) 'short'", fontsize=8, loc='left', pad=3)
+METRICS = [('raw_stem_length', 'Raw stem'), ('median_euk_leaf_dist', 'Normaliser'), ('stem_length', 'Normalised stem')]
+GROUPS = [('broad', 'Broad clades (LECA-like)', CS), ('narrow', 'Narrow clades (≤5 taxa)', CC)]
+xx = np.arange(len(METRICS)); w = 0.38
+for j, (g, glab, col) in enumerate(GROUPS):
+    sub = win[win.breadth == g]
+    ratios = [sub[sub.domn == 'Asgard'][m].median() / sub[sub.domn == 'Bacteria'][m].median() for m, _ in METRICS]
+    na, nb = (sub.domn == 'Asgard').sum(), (sub.domn == 'Bacteria').sum()
+    A.bar(xx + (j - 0.5) * w, ratios, w, color=col, edgecolor='white', linewidth=0.5, label=f'{glab}; n = {na:,}/{nb:,}')
+    for i, r in enumerate(ratios):
+        A.text(i + (j - 0.5) * w, r + 0.015, f'{r:.2f}', ha='center', fontsize=6.5, color=col)
+    print(f'  {g:7s} Asgard/Bacteria medians: ' + ', '.join(f'{l} {r:.3f}' for (_, l), r in zip(METRICS, ratios)))
+from scipy.stats import mannwhitneyu
+for g in ['all', 'broad', 'narrow']:
+    sub = win if g == 'all' else win[win.breadth == g]
+    x, y = sub[sub.domn == 'Asgard'].stem_length.dropna(), sub[sub.domn == 'Bacteria'].stem_length.dropna()
+    U, p = mannwhitneyu(x, y)
+    print(f'  {g:7s} normalised stem, Asgard vs Bacteria: rank-biserial {2 * U / (len(x) * len(y)) - 1:+.3f} (p = {p:.1e})')
+A.axhline(1, color='black', lw=0.5, alpha=0.6)
+A.set_xticks(xx); A.set_xticklabels([l for _, l in METRICS], fontsize=7.2)
+A.set_ylabel('Asgard : bacterial median'); A.set_ylim(0.6, 1.4)
+A.legend(loc='upper left', frameon=False, fontsize=6.3); nospine(A)
+A.set_title("Source of the Asgard–bacterial difference\ndiffers with eukaryotic clade breadth", fontsize=8, loc='left', pad=3)
 letter(A, 'a')
 
 sets = [("Ribosome\n(Asgard, 'vertical')", win.cats.map(lambda s: 'map03010' in s) & (win.domn == 'Asgard'), CS),
@@ -111,7 +129,7 @@ for i, (lab, m, c) in enumerate(sets):
 B.set_xscale('log'); B.set_yticks([0, 1]); B.set_yticklabels([s[0] for s in sets], fontsize=7.2)
 B.set_xlim(0.01, 6); B.set_ylim(-0.6, 1.6)
 B.set_xlabel('Normalised stem length (log scale)')
-B.set_title("One donor, one event: spread is unexplained\nby timing or by adaptive distance", fontsize=8, loc='left', pad=3)
+B.set_title("One donor, one event:\nnormalised stems span 50–70-fold", fontsize=8, loc='left', pad=3)
 nospine(B); letter(B, 'b')
 
 for ext in ('svg', 'pdf', 'png'):
